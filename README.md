@@ -1,4 +1,4 @@
-# PulseNet v3.0
+# ZytroNet v3.0
 
 Real-time network monitoring tool with a live web dashboard.
 
@@ -14,7 +14,7 @@ Python 3.x and these libraries:
 pip install psutil flask
 
 ## How to run
-python PULSE_NET.py
+python ZYTRO_NET.py
 
 ## Optional settings
 --interval 5        (refresh every 5 seconds)
@@ -22,6 +22,6 @@ python PULSE_NET.py
 --no-arp            (disable device scanning)
 --no-color          (disable terminal colors)# PulseNet
 ## Monitor Specific Devices
-python PULSE_NET.py --targets 192.168.1.1 8.8.8.8
+python ZYTRO_NET.py --targets 192.168.1.1 8.8.8.8
 Point it at any device on your network — router, switch, server, client PC. Great for diagnosing where a problem is coming from.
 Real-time network monitoring tool with a live web dashboard. Tracks latency, packet loss, connection quality, and connected devices.
