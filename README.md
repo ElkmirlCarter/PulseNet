@@ -21,4 +21,7 @@ python PULSE_NET.py
 --no-web            (disable web dashboard)
 --no-arp            (disable device scanning)
 --no-color          (disable terminal colors)# PulseNet
+## Monitor Specific Devices
+python PULSE_NET.py --targets 192.168.1.1 8.8.8.8
+Point it at any device on your network — router, switch, server, client PC. Great for diagnosing where a problem is coming from.
 Real-time network monitoring tool with a live web dashboard. Tracks latency, packet loss, connection quality, and connected devices.
