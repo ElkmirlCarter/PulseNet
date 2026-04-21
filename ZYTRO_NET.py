@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PulseNet Monitoring Engine v3.0
+ZytroNet Monitoring Engine v3.0
 Real-time network monitoring with live web dashboard.
 """
 
@@ -59,15 +59,15 @@ def status_col(s):
 
 # ── Argument Parser ───────────────────────────────────────────────────────────
 def parse_args():
-    p = argparse.ArgumentParser(description="PulseNet v3.0 — Real-Time Network Monitor")
+    p = argparse.ArgumentParser(description="ZytroNet v3.0 — Real-Time Network Monitor")
     p.add_argument("--interval",     type=float, default=3.0,
                    help="Refresh interval in seconds (default: 3)")
     p.add_argument("--targets",      nargs="+",  default=["8.8.8.8", "1.1.1.1"],
                    help="Ping targets (default: 8.8.8.8 1.1.1.1)")
     p.add_argument("--ping-count",   type=int,   default=3,
                    help="Pings per target per cycle (default: 3)")
-    p.add_argument("--report",       type=str,   default="pulsenet_report.html",
-                   help="HTML report output path (default: pulsenet_report.html)")
+    p.add_argument("--report",       type=str,   default="zytronet_report.html",
+                   help="HTML report output path (default: zytronet_report.html)")
     p.add_argument("--web-port",     type=int,   default=5000,
                    help="Live web dashboard port (default: 5000)")
     p.add_argument("--no-arp",       action="store_true",
@@ -609,7 +609,7 @@ class TerminalDashboard:
 
         # ── Title ────────────────────────────────────────────────────────────
         add("")
-        add(cl("  ◈ PULSENET", A.CYN, A.BOLD) +
+        add(cl("  ◈ ZYTRONET", A.CYN, A.BOLD) +
             cl(" v3.0", A.GRY) + "  " + cl(now, A.GRY))
         add(cl("  " + "═" * self.W, A.CYN))
         if paused:
@@ -752,7 +752,7 @@ WEB_HTML = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PulseNet Live</title>
+<title>ZytroNet Live</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -847,7 +847,7 @@ body.light{--bg:#f0f4f8;--surf:#fff;--surf2:#f8fafc;--bdr:#e2e8f0;--text:#1a2332
 </head>
 <body>
 <header>
-  <div class="logo">◈ PulseNet <span>Live Monitor v3.0</span></div>
+  <div class="logo">◈ ZytroNet <span>Live Monitor v3.0</span></div>
   <div class="hright">
     <div class="live"><div class="ldot"></div>LIVE</div>
     <div class="lupd" id="upd">Connecting...</div>
@@ -981,7 +981,7 @@ body.light{--bg:#f0f4f8;--surf:#fff;--surf2:#f8fafc;--bdr:#e2e8f0;--text:#1a2332
 </div>
 
 </div>
-<footer>◈ PulseNet v3.0 &nbsp;·&nbsp; Live Dashboard &nbsp;·&nbsp; Auto-reconnect enabled</footer>
+<footer>◈ ZytroNet v3.0 &nbsp;·&nbsp; Live Dashboard &nbsp;·&nbsp; Auto-reconnect enabled</footer>
 
 <script>
 const SC = {ONLINE:'#00ff88',DEGRADED:'#ffd700',ISP_FAILURE:'#ff8c00',OFFLINE:'#ff4444',UNKNOWN:'#4a6080'};
@@ -1219,7 +1219,7 @@ def generate_report(state, args):
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PulseNet Report — {datetime.now().strftime('%Y-%m-%d %H:%M')}</title>
+<title>ZytroNet Report — {datetime.now().strftime('%Y-%m-%d %H:%M')}</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -1267,7 +1267,7 @@ footer{{text-align:center;padding:24px;color:var(--muted);font-size:10px;
 </head>
 <body>
 <header>
-  <div><div class="logo">◈ PulseNet <span>Session Report v3.0</span></div></div>
+  <div><div class="logo">◈ ZytroNet <span>Session Report v3.0</span></div></div>
   <div class="meta"><strong>{datetime.now().strftime('%A, %B %d %Y')}</strong>
     Generated {datetime.now().strftime('%H:%M:%S')}</div>
 </header>
@@ -1319,7 +1319,7 @@ footer{{text-align:center;padding:24px;color:var(--muted);font-size:10px;
   <tbody>{erows or "<tr><td colspan='4' style='color:var(--muted)'>No events recorded</td></tr>"}</tbody></table>
 </div>
 </div>
-<footer>◈ PulseNet v3.0 &nbsp;·&nbsp; {len(metrics)} data points &nbsp;·&nbsp; {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</footer>
+<footer>◈ ZytroNet v3.0 &nbsp;·&nbsp; {len(metrics)} data points &nbsp;·&nbsp; {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</footer>
 <script>
 const ts={json.dumps(ts)},lats={json.dumps(lats)},losses={json.dumps(losses)},
       scores={json.dumps(scores)},ups={json.dumps(ups)},dns={json.dumps(dns)},
@@ -1367,7 +1367,7 @@ def main():
     if args.no_color: NO_COLOR = True
     if IS_WIN: os.system("")  # enable ANSI on Windows
 
-    print(cl("\n  ◈ PulseNet Monitoring Engine v3.0", A.CYN, A.BOLD))
+    print(cl("\n  ◈ ZytroNet Monitoring Engine v3.0", A.CYN, A.BOLD))
     print(cl("  Initialising...\n", A.GRY))
 
     # Warnings
@@ -1507,7 +1507,7 @@ def main():
             state["session_summary"] = session.summary()
 
         ss = session.summary()
-        print(cl("\n  ◈ PulseNet — Session Summary", A.CYN, A.BOLD))
+        print(cl("\n  ◈ ZytroNet — Session Summary", A.CYN, A.BOLD))
         print(cl("  " + "═" * 50, A.CYN))
 
         def row(l, v, c=A.WHT):
@@ -1532,7 +1532,7 @@ def main():
         else:
             print(cl("  Not enough data to generate report.\n", A.YLW))
 
-        print(cl("  Thank you for using PulseNet.\n", A.CYN))
+        print(cl("  Thank you for using ZytroNet.\n", A.CYN))
 
 
 if __name__ == "__main__":
